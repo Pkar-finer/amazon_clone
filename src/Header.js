@@ -34,7 +34,7 @@ function Header() {
         <Link to={!user&&"/login"}>
           <div onClick={handleAuthenticaton} className="header_option">
             <span className="header_optionLineOne">
-              Hello {!user ? "Guest" : user.email.substring(0,5)}
+              Hello {!user ? "Guest" : user.email.substring(0,user.email.indexOf('@'))} 
             </span>
             <span className="header_optionLineTwo">
               {user ? "Sign Out" : "Sign In"}
