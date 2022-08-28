@@ -2,13 +2,13 @@ import React from "react";
 import "./CheckoutProduct.css";
 import { useStateValue } from "./StateProvider";
 
-function CheckoutProduct({ id, image, title, price, rating }) {
+function CheckoutProduct({ id, image, title, price, rating, hideButton }) {
   //adar wala curly brace ke karan bahut time waste
   const [{ basket }, dispatch] = useStateValue();
-  const removeFromBasket=()=>{
+  const removeFromBasket = () => {
     dispatch({
-      type:'REMOVE_FROM_BASKET',
-      id:id,
+      type: 'REMOVE_FROM_BASKET',
+      id: id,
     })
   }
   return (
@@ -27,7 +27,10 @@ function CheckoutProduct({ id, image, title, price, rating }) {
               <p>⭐</p>
             ))}
         </div>
-        <button onClick={removeFromBasket}>Remove from Basket</button>
+        {!hideButton && (
+          <button onClick={removeFromBasket}>Remove from Basket</button>
+        )}
+
       </div>
     </div>
   );

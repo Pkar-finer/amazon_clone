@@ -10,11 +10,11 @@ import { useStateValue } from "./StateProvider";
 import Payment from './Payment'
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-
+import Orders from "./Orders";
 const promise = loadStripe('pk_test_51LbjyVSEpV0pxmT6pnRzsiit9sqvVg7uuMcVVYOQMQKTvyGXkbhFZgjs6c8kIIMQrATG0c3829rZ0F2asHb2smMV0059Dj0qkS')
 
 function App() {
-  const [{}, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       // console.log("THE USER IS >>> ", authUser);
@@ -64,12 +64,25 @@ function App() {
               <>
                 <Header />
                 <Elements stripe={promise}>
-                <Payment />
+                  <Payment />
                 </Elements>
-                
+
               </>
             }
           />
+
+
+          <Route
+            path="/orders"
+            element={
+              <>
+              <Header />
+              <Orders />
+              </>
+            }
+          />
+
+
           <Route
             path="/"
             element={

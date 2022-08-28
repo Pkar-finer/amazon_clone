@@ -16,16 +16,19 @@ app.use(cors({origin:true}));
 app.use(express.json());
 
 //api routes
-app.get("/", (request, response) => response.status(200).send("hello world"));
+// app.get("/", (request, response) => response.status(200).send("hello world"));
 
-app.post("/payments/create", async (request, response) => {
-    const total = request.query.total;
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: total, // subunits of the currency
-      currency: "inr",
-    });
+app.post("/payments/create", async (request, response)=> {
+  const total = await(request.query.total);
 
-      // OK - Created
+
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: total, // subunits of the currency
+    currency: "usd",
+  });
+
+  // OK - Created
   response.status(201).send({
     clientSecret: paymentIntent.client_secret,
   });
