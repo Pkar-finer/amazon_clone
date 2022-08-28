@@ -16,7 +16,7 @@ function Checkout() {
           className="checkout_ad"
         />
         <div>
-          <h3>Namaste,{!user ? "Guest" : user.email.substring(0,5)}</h3>
+          <h3>Namaste,{!user ? "Guest" : user.email.substring(0,user.email.indexOf('@'))}</h3>
           <h2 className="checkout_title">Your Shopping Basket</h2>
           {basket.map(item => (
             <CheckoutProduct

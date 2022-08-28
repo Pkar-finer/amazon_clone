@@ -1,5 +1,6 @@
 import React from "react";
 import "./Product.css";
+import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 function Product({id,title,image,price,rating}) {
   const [{ basket }, dispatch] = useStateValue();
@@ -19,6 +20,12 @@ function Product({id,title,image,price,rating}) {
      });
   };
 
+  // const btn = document.getElementById('btn');
+
+// btn.addEventListener('click', function onClick() {
+//   btn.style.backgroundColor = 'salmon';
+//   btn.style.color = 'white';
+// });
   
   return (
     <div className="product">
@@ -36,7 +43,9 @@ function Product({id,title,image,price,rating}) {
         </div>
       </div>
       <img src={image}alt=""  />
-      <button onClick={addtoBasket}>Add to cart</button>
+      <Link to ='/checkout'>
+      <button className="btn" onClick={addtoBasket}>Add to cart</button>
+      </Link>
       {/* onClick={addtoBasket} */}
     </div>
   );
